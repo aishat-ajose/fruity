@@ -11,7 +11,7 @@ class HomePageScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.white,
-        title: Image.asset('lib/logo.png',),
+        title: Image.asset('assets/logo.png',),
       ),
 
       body: Column(
@@ -118,7 +118,7 @@ class HomePageScreen extends StatelessWidget {
                 color: Colors.yellow.shade100
               ),
 
-              child:SvgPicture.asset('')
+              child:SvgPicture.asset('assets/mango_fruit.svg')
             ),
           ),
         
