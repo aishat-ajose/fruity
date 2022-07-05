@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fruity/apiservice.dart';
+import 'package:fruity/fruit_db.dart';
 
 class HomePageScreen extends StatelessWidget {
   const HomePageScreen({ Key? key }) : super(key: key);
@@ -45,26 +47,34 @@ class HomePageScreen extends StatelessWidget {
   }
 
   Widget search(){
-    return Container(
-      margin: const EdgeInsets.all(20.0),
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-      height: 50.0,
-      width: double.infinity,
+    return InkWell(
+      onTap: () async{
+        // ApiService _apiService = ApiService();
 
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15.0),
-        color: Colors.grey.shade200
-      ),
-
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          Text(
-            'Search here'
-          ),
-
-          Icon(Icons.mic)
-        ],
+        var res = await ApiService.fetchfruits();
+        print(res);
+      },
+      child: Container(
+        margin: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+        height: 50.0,
+        width: double.infinity,
+    
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.0),
+          color: Colors.grey.shade200
+        ),
+    
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: const [
+            Text(
+              'Search here'
+            ),
+    
+            Icon(Icons.mic)
+          ],
+        ),
       ),
     );
   }
@@ -72,7 +82,6 @@ class HomePageScreen extends StatelessWidget {
 
   Widget allFruitContainer(){
 
-    List<String> fruits = ['Apple', 'Strawberry', 'Orange', 'Banana', 'Cherry', 'Mango', 'Apple', 'Strawberry', 'Orange', 'Banana', 'Cherry', 'Mango', 'Apple', 'Strawberry', 'Orange', 'Banana', 'Cherry', 'Mango'];
     
     return Container(
     
@@ -96,7 +105,7 @@ class HomePageScreen extends StatelessWidget {
     );
   }
 
-  Widget fruitContainer(String fruit){
+  Widget fruitContainer(Fruit fruit){
     return Container(
       margin: const EdgeInsets.all(13.0),
       child: Column(
@@ -109,23 +118,25 @@ class HomePageScreen extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.white,
-              border: Border.all(color: Colors.green, width: 0.7),
+              border: Border.all(color: fruit.color, width: 0.7),
             ),
 
             child:  Container(
               decoration:  BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.yellow.shade100
+                color: Colors.grey.shade100,
+                
               ),
+              alignment: Alignment.center,
 
-              child:SvgPicture.asset('assets/mango_fruit.svg')
+              child:SvgPicture.asset(fruit.imgPath)
             ),
           ),
         
           const SizedBox(height: 10.0,),
 
           Text(
-            fruit,
+            fruit.name,
             style: const TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 16
@@ -137,3 +148,5 @@ class HomePageScreen extends StatelessWidget {
   }
 
 }
+
+
