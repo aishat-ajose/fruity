@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruity/fruitdetails.dart';
 import 'package:fruity/homepage.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePageScreen(),
+      home: const HomePageScreen(),
     );
   }
 }

@@ -4,7 +4,6 @@
 
 // ignore_for_file: prefer_if_null_operators, prefer_null_aware_operators, unnecessary_null_comparison
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 List<FruitModel> fruitFromJson(String str) =>
